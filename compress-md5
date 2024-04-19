@@ -1,0 +1,39 @@
+#!/bin/bash
+
+#INTRO
+echo "This program will tar your folder => create md5sum => Compare"
+
+# Ask user for folder path
+read -p "Enter folder path: " folder_path
+
+# Check if the folder exists
+if [ ! -d "$folder_path" ]; then
+    echo "[ERROR] Folder '$folder_path' does not exist."
+    exit 1
+fi
+
+# Get the folder name from the path
+folder_name=$(basename "$folder_path")
+
+# Generate user for md5sum file name
+md5sum_file_name="${folder_name}.md5"
+
+# Get the full paths of the created files
+tarball_path=$(realpath "${folder_name}.tar.gz")
+md5sum_path=$(realpath "$md5sum_file_name")
+
+# Tar and gzip the folder
+tar czf "${folder_name}.tar.gz" -C "$(dirname "$folder_path")" "$folder_name"
+
+# Calculate md5sum and save it to a file
+md5sum "${folder_name}.tar.gz" > "$md5sum_file_name"
+
+echo "[INFO] Tarball and md5sum created successfully."
+
+# Compare md5sum
+echo "[PROCESSING] Comparing md5sums..."
+md5sum -c "$md5sum_file_name"
+
+echo "[INFO] $tarball_path and $md5sum_path are successfully created"
+
+

@@ -1,0 +1,9 @@
+#!/bin/bash
+echo "################"
+echo "Welcome to samba"
+echo "################"
+
+echo "Input your personal UGhent username:"
+
+read username
+smbclient -U UGENT/$username //files.ugent.be/$username -m smb3
