@@ -65,9 +65,9 @@ while read -r link; do
     
     # Compare md5sums and write results to md5.out
     if [[ "$downloaded_md5sum" == "$expected_md5sum" ]]; then
-        echo "$file MD5SUM = OK" >> "$md5_log"
+        echo "$file  $downloaded_md5sum  OK" >> "$md5_log"
     else
-        echo "$file MD5SUM = NOK" >> "$md5_log"
+        echo "$file  $downloaded_md5sum  NOK" >> "$md5_log"
         ((failed_md5sums++))
     fi
 done < "$download_file"
