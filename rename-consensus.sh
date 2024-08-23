@@ -16,8 +16,8 @@ for dir in barcode*/; do
         # Check if the consensus file exists
         if [[ -f "$consensus_file" ]]; then
             # Construct the new filename and copy the file
-            new_filename="${parent_name}.fastq"
-            cp "$consensus_file" "$base_dir/$new_filename"
+            new_filename="${parent_name}"
+            cp "$consensus_file" "$base_dir/${new_filename}.consensus.fastq"
 
             echo "Copied $consensus_file to $base_dir/$new_filename"
         else
