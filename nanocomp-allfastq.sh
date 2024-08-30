@@ -51,7 +51,7 @@ run_nanocomp() {
     done
 
     # Run NanoComp with the compiled FASTQ files and barcode names
-    nano_comp_command="NanoComp --fastq ${compiled_fastq_files[@]} --names ${barcode_names[@]} --outdir $parent_dir.nanocompout"
+    nano_comp_command="NanoComp --fastq ${compiled_fastq_files[@]} --names ${barcode_names[@]} --outdir $parent_dir/nanocomp.out"
 
     # Run NanoComp
     echo "Running NanoComp"
